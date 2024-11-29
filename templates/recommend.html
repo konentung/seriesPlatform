@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/css/styles.css">
+    <title>Recommendations</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Recommended Titles</h1>
+        <form id="recommendForm" action="/recommend" method="POST">
+            <label for="genre">選擇喜歡的類型：</label>
+            <select id="genres" name="genres">
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Horror">Horror</option>
+                <option value="Romance">Romance</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Documentary">Documentary</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Animation">Animation</option>
+                <option value="Family">Family</option>
+                <option value="Adventure">Adventure</option>
+            </select><br><br>
+        
+            <label for="platform">選擇平台：</label>
+            <select id="platform" name="platform">
+                <option value="All">All</option>
+                <option value="Netflix">Netflix</option>
+                <option value="DisneyPlus">Disney Plus</option>
+            </select><br><br>
+            
+            <input type="hidden" id="page" name="page" value="{{ page }}">
+        
+            <button type="submit" class="submit-btn">獲取推薦</button>
+        </form>
+        <ul class="recommendations-list">
+            {% for recommendation in recommendations %}
+            <li class="recommendation-item">
+                <strong>{{ recommendation.title }}</strong> ({{ recommendation.Platform }})<br>
+                <p>{{ recommendation.description }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="pagination-buttons">
+            {% if page > 1 %}
+            <form action="/recommend" method="POST" style="display: inline;">
+                <input type="hidden" name="genres" value="{{ genres }}">
+                <input type="hidden" name="platform" value="{{ platform }}">
+                <input type="hidden" name="page" value="{{ page - 1 }}">
+                <button type="submit" class="pagination-btn">上一頁</button>
+            </form>
+            {% endif %}
+            {% if page < total_pages %}
+            <form action="/recommend" method="POST" style="display: inline;">
+                <input type="hidden" name="genres" value="{{ genres }}">
+                <input type="hidden" name="platform" value="{{ platform }}">
+                <input type="hidden" name="page" value="{{ page + 1 }}">
+                <button type="submit" class="pagination-btn">下一頁</button>
+            </form>
+            {% endif %}
+        </div>
+        <div class="page-select">
+            <form action="/recommend" method="POST" style="display: inline;">
+                <label for="select-page">選擇頁數：</label>
+                <select id="select-page" name="page">
+                    {% for p in range(1, total_pages + 1) %}
+                    <option value="{{ p }}" {% if p == page %}selected{% endif %}>第 {{ p }} 頁</option>
+                    {% endfor %}
+                </select>
+                <input type="hidden" name="genres" value="{{ genres }}">
+                <input type="hidden" name="platform" value="{{ platform }}">
+                <button type="submit" class="pagination-btn">跳轉</button>
+            </form>
+        </div>
+        <a href="/"><button class="home-btn">返回首頁</button></a>
+    </div>
+</body>
+</html>

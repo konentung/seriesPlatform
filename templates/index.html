@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/css/styles.css">
+    <title>影片推薦系統</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const releaseYearNetflix = {{ release_year_netflix | tojson | safe }};
+        const releaseYearDisney = {{ release_year_disney | tojson | safe }};
+        const NetflixRating = {{ netflix_rating | tojson | safe }};
+        const DisneyRating = {{ disney_rating | tojson | safe }};
+    </script>
+    <script defer src="./static/js/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>歡迎來到影片推薦系統</h1>
+        <!-- 用於顯示圖表的 canvas 標籤 -->
+        <div id="charts-wrapper">
+            <div class="chart-container">
+                <canvas id="ratingChart" width="2000" height="1000"></canvas> <!-- 調整寬度和高度屬性 -->
+            </div>
+            <div class="chart-container">
+                <canvas id="releaseYearChart" width="2000" height="1000"></canvas> <!-- 調整寬度和高度屬性 -->
+            </div>
+        </div>
+        <a href="/recommend"><button class="home-btn">前往分類搜尋</button></a>
+    </div>
+</body>
+</html>
