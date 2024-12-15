@@ -1,3 +1,4 @@
+/* 全局樣式 */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -51,7 +52,8 @@ select[multiple] {
     margin-bottom: 20px;
 }
 
-.submit-btn {
+/* 按鈕樣式 */
+.submit-btn, .home-btn {
     background-color: #007BFF;
     color: #ffffff;
     border: none;
@@ -62,19 +64,56 @@ select[multiple] {
     cursor: pointer;
     width: 100%;
     transition: background-color 0.3s;
+    margin-top: 20px;
 }
 
-.submit-btn:hover {
+.submit-btn:hover, .home-btn:hover {
     background-color: #0056b3;
 }
 
+.home-btn {
+    background-color: #28a745;
+}
+
+.home-btn:hover {
+    background-color: #218838;
+}
+
+/* 分頁按鈕樣式 */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination form {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.pagination-btn {
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 5px;
+}
+
+.pagination-btn:hover {
+    background-color: #0056b3;
+}
+
+/* 推薦清單 */
 .recommendations-list {
     list-style-type: none;
     padding: 0;
     margin-top: 20px;
 }
 
-.recommendation-item {
+.recommendation-item, .card {
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
@@ -82,50 +121,23 @@ select[multiple] {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.pagination-buttons {
-    text-align: center;
-    margin-top: 20px;
+.card h2 {
+    margin: 0;
+    font-size: 1.5em;
 }
 
-.pagination-btn {
-    background-color: #007BFF;
-    color: #ffffff;
-    border: none;
-    padding: 10px;
-    font-size: 1em;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 5px;
-    transition: background-color 0.3s;
+.card p {
+    margin: 10px 0;
+    color: #555;
 }
 
-.pagination-btn:hover {
-    background-color: #0056b3;
-}
-
-.home-btn {
-    background-color: #28a745;
-    color: #ffffff;
-    border: none;
-    padding: 15px;
-    text-align: center;
+.pagination p {
     font-size: 1.2em;
-    border-radius: 8px;
-    width: 100%;
-    transition: background-color 0.3s;
-    margin-top: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.home-btn a {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.home-btn:hover {
-    background-color: #218838;
-}
-
-/* RWD for different devices */
+/* 響應式設計 */
 @media (max-width: 768px) {
     .container {
         padding: 20px;
